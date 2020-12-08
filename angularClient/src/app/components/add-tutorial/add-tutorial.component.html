@@ -1,1 +1,31 @@
-<p>add-tutorial works!</p>
+<mat-card>
+  <mat-list>
+    <mat-list-item>
+      <div class="card-header">
+        <h4>Add New Tutorial</h4>
+
+        <button mat-mini-fab color="primary" matTooltip="Add New tutori" *ngIf="submitted"
+          aria-label="Example icon button with a vertical three dot icon" (click)="newTutorial()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+  <div *ngIf="!submitted">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput id='title' required [(ngModel)]="tutorial.title">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput id='description' required [(ngModel)]="tutorial.description"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)='saveTutorial()'>Submit</button>
+  </div>
+  <div *ngIf="submitted">
+    <h4 class="notification">You submitted successfully!</h4>
+  </div>
+</mat-card>
