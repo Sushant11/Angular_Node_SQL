@@ -10,10 +10,9 @@
 }
 
 .notification {
-  background: #ff4081;
+  background: #d4d4d430;
   border-radius: 4px;
-  color: white;
-  margin: 2rem 0;
+  margin-top: 2rem;
   padding: 5px 10px;
 }
 

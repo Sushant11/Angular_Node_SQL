@@ -1,36 +1,48 @@
 <mat-card>
   <div class="card-header">
     <h4>All Tutorials</h4>
-    <button mat-icon-button color="accent" matTooltip="Delete Tutorials"
-      aria-label="Example icon button with a vertical three dot icon" (click)='removeAllTutorials()'>
-      <mat-icon>delete</mat-icon>
-    </button>
+    <div *ngIf='tutorials.length !== 0'>
+      <button mat-icon-button color="accent" matTooltip="Delete Tutorials"
+        aria-label="Example icon button with a vertical three dot icon" (click)='removeAllTutorials()'>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" matTooltip="Refresh Tutorials"
+        aria-label="Example icon button with a vertical three dot icon" (click)='refreshList()'>
+        <mat-icon>sync</mat-icon>
+      </button>
+    </div>
   </div>
   <mat-divider></mat-divider>
-  <mat-form-field appearance="outline">
-    <mat-label>Search By Title</mat-label>
-    <mat-icon matPrefix>search</mat-icon>
-    <input matInput [(ngModel)]="title" onsubmit="searchTitle()">
-  </mat-form-field>
-  <mat-divider></mat-divider>
-  <div mat-subheader>Tutorials</div>
-  <mat-selection-list [multiple]="false">
-    <mat-list-option role="listitem" *ngFor="let tutorial of tutorials; let i = index"
-      [class.active]="i == currentIndex" (click)="setActiveTutorial(tutorial, i)">
-      <mat-icon mat-list-icon>class</mat-icon>
-      {{tutorial.title}}
-    </mat-list-option>
-  </mat-selection-list>
+  <div *ngIf='tutorials.length === 0'>
+    <h4 class="notification">No Tutorial has been added yet. Please add a new tutorial to view the details.</h4>
+    <button mat-raised-button color="primary" routerLink="/add">Add New</button>
+  </div>
 
-  <div *ngIf="!currentTutorial">
-    <br />
-    <h4 class="notification">Please click on a Tutorial to see the details.</h4>
+  <div *ngIf='tutorials.length !== 0'>
+    <mat-form-field appearance="outline">
+      <mat-label>Search By Title</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [(ngModel)]="title" onsubmit="searchTitle()">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <div mat-subheader>Tutorials</div>
+    <mat-selection-list [multiple]="false" class="tutorial-list">
+      <mat-list-option role="listitem" *ngFor="let tutorial of tutorials; let i = index"
+        [class.active]="i == currentIndex" (click)="setActiveTutorial(tutorial, i)">
+        <mat-icon mat-list-icon>class</mat-icon>
+        {{tutorial.title}}
+      </mat-list-option>
+    </mat-selection-list>
+    <mat-divider></mat-divider>
+    <div *ngIf="!currentTutorial">
+      <h4 class="notification">Please click on a tutorial to see the details.</h4>
+    </div>
   </div>
 </mat-card>
 
-<mat-card *ngIf="currentTutorial" class="description">
+<mat-card *ngIf="currentTutorial && tutorials.length !== 0" class="description">
   <div class="card-header">
-    <div mat-subheader>Details</div>
+    <h4>Details</h4>
     <button mat-icon-button color="primary" matTooltip="Edit Tutorial"
       aria-label="Example icon button with a vertical three dot icon" routerLink="/tutorials/{{ currentTutorial.id }}">
       <mat-icon>edit</mat-icon>
@@ -38,15 +50,22 @@
   </div>
   <mat-divider></mat-divider>
   <div class='details'>
-    <label><strong>Title:</strong></label> {{ currentTutorial.title }}
-  </div>
-  <div>
-    <label><strong>Description:</strong></label>
-    {{ currentTutorial.description }}
-  </div>
-  <div>
-    <label><strong>Status:</strong></label>
-    {{ currentTutorial.published ? "Published" : "Pending" }}
+    <div class='details-item'>
+      <label><strong>Title:</strong></label> {{ currentTutorial.title }}
+    </div>
+    <div class='details-item'>
+      <label><strong>Description:</strong></label>
+      {{ currentTutorial.description }}
+    </div>
+    <div class='details-item'>
+      <label><strong>Status:</strong></label>
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip> {{ currentTutorial.published ?  "Published" : "Pending" }}</mat-chip>
+      </mat-chip-list>
+
+
+    </div>
+
   </div>
 
 </mat-card>

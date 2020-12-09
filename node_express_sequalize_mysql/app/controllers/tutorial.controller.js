@@ -13,23 +13,26 @@ exports.create = (req, res) => {
         })
     }
 
-    //Create a Tutorial
-    const tutorial = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
+    else {
+        //Create a Tutorial
+        const tutorial = {
+            title: req.body.title,
+            description: req.body.description,
+            published: req.body.published ? req.body.published : false
+        }
+
+        Tutorial.create(tutorial)
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || 'Some error occured while creating the tutorial.'
+                })
+            })
     }
 
-    Tutorial.create(tutorial)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || 'Some error occured while creating the tutorial.'
-            })
-        })
 
 }
 

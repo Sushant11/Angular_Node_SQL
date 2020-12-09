@@ -1,17 +1,12 @@
 <mat-card>
-  <mat-list>
-    <mat-list-item>
-      <div class="card-header">
-        <h4>Add New Tutorial</h4>
-
-        <button mat-mini-fab color="primary" matTooltip="Add New tutori" *ngIf="submitted"
-          aria-label="Example icon button with a vertical three dot icon" (click)="newTutorial()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-  </mat-list>
+  <div class="card-header">
+    <h4>Add New Tutorial</h4>
+    <button mat-mini-fab color="primary" matTooltip="Add New Tutorial" *ngIf="submitted"
+      aria-label="Example icon button with a vertical three dot icon" (click)="newTutorial()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
   <div *ngIf="!submitted">
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
@@ -26,6 +21,6 @@
     <button mat-raised-button color="primary" (click)='saveTutorial()'>Submit</button>
   </div>
   <div *ngIf="submitted">
-    <h4 class="notification">You submitted successfully!</h4>
+    <h4 class="notification">You have submitted successfully! Please add new or view the list.</h4>
   </div>
 </mat-card>

@@ -20,12 +20,12 @@ export class TutorialsListComponent implements OnInit {
   }
 
   retrieveTutorials(): void {
-    console.log('this.currentINdex :>> ', this.currentIndex);
     this.tutorialService.getAll()
       .subscribe(
         data => {
           this.tutorials = data;
           console.log(data);
+          console.log('this.tutorials :>> ', this.tutorials);
         },
         error => {
           console.log(error);
