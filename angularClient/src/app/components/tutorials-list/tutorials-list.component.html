@@ -2,19 +2,19 @@
   <div class="card-header">
     <h4>All Tutorials</h4>
     <div *ngIf='tutorials.length !== 0'>
-      <button mat-icon-button color="accent" matTooltip="Delete Tutorials"
-        aria-label="Example icon button with a vertical three dot icon" (click)='removeAllTutorials()'>
-        <mat-icon>delete</mat-icon>
-      </button>
       <button mat-icon-button color="primary" matTooltip="Refresh Tutorials"
         aria-label="Example icon button with a vertical three dot icon" (click)='refreshList()'>
         <mat-icon>sync</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" matTooltip="Delete Tutorials"
+        aria-label="Example icon button with a vertical three dot icon" (click)='removeAllTutorials()'>
+        <mat-icon>delete</mat-icon>
       </button>
     </div>
   </div>
   <mat-divider></mat-divider>
   <div *ngIf='tutorials.length === 0'>
-    <h4 class="notification">No Tutorial has been added yet. Please add a new tutorial to view the details.</h4>
+    <h4 class="notification">No Tutorial has been added yet. Please add a new tutorial to view the list.</h4>
     <button mat-raised-button color="primary" routerLink="/add">Add New</button>
   </div>
 
@@ -43,10 +43,17 @@
 <mat-card *ngIf="currentTutorial && tutorials.length !== 0" class="description">
   <div class="card-header">
     <h4>Details</h4>
-    <button mat-icon-button color="primary" matTooltip="Edit Tutorial"
-      aria-label="Example icon button with a vertical three dot icon" routerLink="/tutorials/{{ currentTutorial.id }}">
-      <mat-icon>edit</mat-icon>
-    </button>
+    <div>
+      <button mat-icon-button color="primary" matTooltip="Edit Tutorial"
+        aria-label="Example icon button with a vertical three dot icon"
+        routerLink="/tutorials/{{ currentTutorial.id }}">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" matTooltip="Delete Tutorial"
+        aria-label="Example icon button with a vertical three dot icon" (click)="deleteTutorial(currentTutorial.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
   <mat-divider></mat-divider>
   <div class='details'>

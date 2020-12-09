@@ -1,1 +1,26 @@
-<p>tutorial-details works!</p>
+<mat-card>
+  <div class="card-header">
+    <h4>Edit Tutorial</h4>
+    <button mat-icon-button color="primary" matTooltip="Go Back" routerLink="/tutorials"
+      aria-label="Example icon button with a vertical three dot icon">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngIf="!submitted">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput id='title' required [(ngModel)]="tutorial.title">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput id='description' required [(ngModel)]="tutorial.description"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)='updateTutorialById()'>Submit</button>
+  </div>
+  <div *ngIf="submitted">
+    <h4 class="notification">You have edited the tutorial successfully!</h4>
+  </div>
+</mat-card>

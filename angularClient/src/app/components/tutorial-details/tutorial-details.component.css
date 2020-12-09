@@ -1,0 +1,26 @@
+.mat-card {
+    margin: auto;
+    width: 30%;
+    top: 5rem;
+  }
+  
+  .mat-form-field {
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
+  .notification {
+    background: #d4d4d430;
+    border-radius: 4px;
+    margin-top: 2rem;
+    padding: 5px 10px;
+  }
+  
+  .card-header {
+    display: flex;
+    width: 100%;
+    margin-bottom: 14px;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  

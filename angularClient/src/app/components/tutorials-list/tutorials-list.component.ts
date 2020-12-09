@@ -24,8 +24,6 @@ export class TutorialsListComponent implements OnInit {
       .subscribe(
         data => {
           this.tutorials = data;
-          console.log(data);
-          console.log('this.tutorials :>> ', this.tutorials);
         },
         error => {
           console.log(error);
@@ -36,6 +34,18 @@ export class TutorialsListComponent implements OnInit {
     this.retrieveTutorials();
     this.currentTutorial = null;
     this.currentIndex = -1;
+  }
+
+  deleteTutorial(id): void {
+    this.tutorialService.delete(id)
+      .subscribe(
+        data => {
+          console.log('Deleted');
+          this.refreshList()
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   setActiveTutorial(tutorial, index): void {
